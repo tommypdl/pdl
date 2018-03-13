@@ -1,0 +1,31 @@
+日期问题
+
+public class A
+{
+	// 某日期距离公元元年  多少天
+	public static int getDays(int year, int mon, int day)
+	{
+		int n = 0;
+		for(int i=1; i<year; i++){
+			n += 365;
+			if(i%4==0 && i%100!=0 || i%400==0) n++;
+		}
+		
+		int m[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};
+		if(year%4==0 && year%100!=0 || year%400==0) m[2]++;
+		for(int i=1; i<mon; i++){
+			n += m[i];
+		}
+		
+		n += day;
+		return n;
+	}
+	
+	public static void main(String[] args)
+	{
+		int a = getDays(2015,12,31);
+		int b = getDays(2016,1,2);
+		
+		System.out.println(b-a);
+	}
+}

@@ -1,0 +1,143 @@
+package lqb;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import com.qsa.R;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.ScrollView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+public class fenzhideal extends Activity {
+	private static final int TEST_ID = Menu.FIRST;
+	ScrollView sv;
+	TextView tv;
+	String text = "";
+	int p = 1;
+	Intent i = null;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		sv = (ScrollView) LayoutInflater.from(getBaseContext()).inflate(
+				R.layout.scroll, null);
+		tv = (TextView) sv.getChildAt(0);
+		tv.setText("正在加载中...");
+		setContentView(sv);
+		Intent iget = getIntent();
+		String pos = iget.getStringExtra("pos");
+		p = Integer.parseInt(pos);
+		switch (p) {
+		case 0:
+			text = getText(fenzhideal.this, "chuanzhuweihe.txt");
+			break;
+		case 1:
+			text = getText(fenzhideal.this, "zhishu.txt");
+			break;
+		case 2:
+			text = getText(fenzhideal.this, "zuidalianxuhe.txt");
+			break;
+		default:
+			break;
+
+		}
+		tv.setText(text);
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// TODO Auto-generated method stub
+		menu.add(0, TEST_ID, 0, "测试");
+		return true;
+	}
+
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// TODO Auto-generated method stub
+		switch (item.getItemId()) {
+		case TEST_ID:
+
+			if (p == 0 || p == 1) {
+
+				LayoutInflater factory = LayoutInflater.from(fenzhideal.this);
+				final View textEntryView = factory.inflate(R.layout.dialogtest,
+						null);
+				AlertDialog dlg = new AlertDialog.Builder(fenzhideal.this)
+
+						.setTitle("测试")
+						.setView(textEntryView)
+						.setPositiveButton("OK",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int whichButton) {
+										InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+
+										EditText nums = (EditText) textEntryView
+												.findViewById(R.id.test_edit);
+
+										imm.showSoftInput(nums,
+												InputMethodManager.SHOW_FORCED);
+
+										String num = nums.getText().toString();
+
+										i = new Intent();
+										String pos = p + "";
+										i.putExtra("pos", pos);
+										i.setClass(fenzhideal.this,
+												fenzhishowtest.class);
+										i.putExtra("num", num);
+										startActivity(i);
+
+										// setContentView(ll);
+
+									}
+								})
+						.setNegativeButton("Cancel",
+								new DialogInterface.OnClickListener() {
+									public void onClick(DialogInterface dialog,
+											int whichButton) {
+										System.out.println("-------------->2");
+
+									}
+								}).create();
+				dlg.show();
+			} else {
+				Toast.makeText(fenzhideal.this, "本题暂不支持测试", Toast.LENGTH_LONG)
+						.show();
+			}
+			return true;
+
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	public String getText(Context context, String path) {
+		String temptext = "";
+		try {
+			InputStream is = context.getAssets().open(path);
+			int size = is.available();
+			byte[] buffer = new byte[size];
+			is.read(buffer);
+			is.close();
+			temptext = new String(buffer, "GB2312");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
+		return temptext;
+	}
+
+}

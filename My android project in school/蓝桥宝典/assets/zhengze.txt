@@ -1,0 +1,19 @@
+ÕıÔò
+
+//import java.util.regex.*;
+
+public class A
+{
+	public static void main(String[] args)
+	{
+		// .matches  .split  .replaceFrist  .replaceAll
+		String s = "123abc646kkkk435435uuy";
+		
+		String[] ss = s.split("((?<=[0-9])(?=[a-z]))|((?<=[a-z])(?=[0-9]))");
+		for(String x: ss) System.out.println(x);
+		
+		//s = s.replaceAll("([0-9]+)([a-z]+)", "$1,$2");
+		//s = s.replaceAll("([a-z]+)([0-9]+)", "$1,$2");
+		//System.out.println(s);
+	}
+}

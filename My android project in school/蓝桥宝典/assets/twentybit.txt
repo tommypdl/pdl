@@ -1,0 +1,43 @@
+求一个数，总长度为len,
+其中任意相邻的d位数不相等
+这样的数共有多少个
+
+import java.util.*;
+public class k {
+
+	/**
+	 * @param args
+	 */
+	static int len,d;
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner s=new Scanner(System.in);
+		len=s.nextInt();
+		d=s.nextInt();
+		long[][][] A=new long[len+1][10][10];
+		for(int i=1;i<=d;i++){
+			for(int j=0;i+j<=d;j++){
+				A[2][i][j]=1;
+			}
+		}
+		int n=3;
+		do{
+			for(int i=0;i<=d;i++)
+				for(int j=0;i+j<=d;j++)
+					if(A[n-1][i][j]!=0)
+						for(int k=0;i+j+k<=d;k++)
+							A[n][j][k]+=A[n-1][i][j];
+			n++;
+		}while(n<=len);
+		long total=0;
+		for(int i=0;i<=d;i++)
+			for(int j=0;i+j<=d;j++)
+				total+=A[len][i][j];
+		System.out.println(total);
+
+	}
+
+}
+
+
+测试数据样本：20 3

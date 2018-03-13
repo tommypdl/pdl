@@ -1,0 +1,126 @@
+
+    足球比赛具有一定程度的偶然性，弱队也有战胜强队的可能。
+
+    假设有甲、乙、丙、丁四个球队。根据他们过去比赛的成绩，得出每个队与另一个队对阵时取胜的概率表:
+
+    甲  乙  丙  丁   
+甲   -  0.1 0.3 0.5
+乙 0.9  -   0.7 0.4 
+丙 0.7  0.3 -   0.2
+丁 0.5  0.6 0.8 -
+
+    数据含义：甲对乙的取胜概率为0.1，丙对乙的胜率为0.3，...
+
+    现在要举行一次锦标赛。双方抽签，分两个组比，获胜的两个队再争夺冠军。（参见【1.jpg】）
+
+    请你进行10万次模拟，计算出甲队夺冠的概率。
+
+
+    注意：
+
+    请仔细调试！您的程序只有能运行出正确结果的时候才有机会得分！
+    
+    在评卷时使用的输入数据与试卷中给出的实例数据可能是不同的。
+
+    请把所有函数写在同一个文件中，调试好后，存入与【考生文件夹】下对应题号的“解答.txt”中即可。
+    
+    相关的工程文件不要拷入。
+    
+    源代码中不能能使用诸如绘图、Win32API、中断调用、硬件操作或与操作系统相关的API。
+    
+    允许使用STL类库，但不能使用MFC或ATL等非ANSI c++标准的类库。例如，不能使用CString类型（属于MFC类库）。
+
+
+
+
+#include<stdio.h>
+ 2 #include<time.h>
+ 3 #include<stdlib.h>
+ 4 
+ 5 
+ 6 int main()
+ 7 {
+ 8     int i,j,k;
+ 9     double t1,t2,t3,sum=0;
+10     t1=0.1*(0.2*0.3+0.8*0.5);//甲对乙 丙对丁
+11     t2=0.3*(0.4*0.1+0.6*0.5);//甲对丙 乙对丁
+12     t3=0.5*(0.7*0.1+0.3*0.3);//甲对丁 乙对丙
+13     srand((int)time(NULL));
+14     for(i=0;i<100000;i++)
+15     {
+16         k=rand()%3;
+17         if(k==0)  sum+=t1;
+18         else if(k==1) sum+=t2;
+19         else sum+=t3;
+20     }
+21     printf("%.4lf\n",sum/100000);
+22     return 0;
+23 }
+
+01.#include<stdio.h>   
+02.#include<string.h>   
+03.#include<stdlib.h>   
+04.int main()  
+05.{  
+06.    double ans1=0.1*0.2*0.3+0.1*0.8*0.5;  
+07.    double ans2=0.3*0.4*0.1+0.3*0.6*0.5;  
+08.    double ans3=0.5*0.7*0.1+0.5*0.3*0.3;  
+09.    int i;  
+10.    double sum=0;  
+11.    for(i=0;i<100000;i++)  
+12.    {  
+13.        int t=rand()%3+1;  
+14.        if(t==1)  
+15.        sum+=ans1;  
+16.        else if(t==2)  
+17.        sum+=ans2;  
+18.        else  
+19.        sum+=ans3;  
+20.    }  
+21.    printf("%.2lf\n",sum/100000);  
+22.    return 0;  
+23.}  
+
+
+
+import java.util.Random;   
+   
+   
+public class WinningProbability {   
+   
+       
+    public static void main(String[] args) {   
+        // TODO Auto-generated method stub   
+        //我直接把三种分组情况的甲夺冠概率算出来 然后random一下了   
+        double sum=0;   
+        double jy_bd=0.1*0.2*0.3+0.1*0.8*0.5;//甲乙-丙丁 分组 甲夺冠概率   
+        double jb_yd=0.3*0.4*0.9+0.3*0.6*0.5;//甲丙-乙丁 分组 甲夺冠概率   
+        double jd_yb=0.5*0.7*0.1+0.5*0.3*0.3;//甲丁-乙丙 分组 甲夺冠概率   
+           
+        Random rd=new Random();   
+        for(int i=0;i<100000;i++)   
+        {   
+            int fz=rd.nextInt(3)+1;   
+            switch (fz)    
+            {   
+            case 1:   
+                sum+=jy_bd;   
+                break;   
+   
+            case 2:   
+                sum+=jb_yd;   
+                   
+            case 3:   
+                sum+=jd_yb;   
+                   
+            default:   
+                break;   
+            }   
+        }   
+           
+        System.out.println(sum/100000);   
+    }   
+   
+}   
+
+

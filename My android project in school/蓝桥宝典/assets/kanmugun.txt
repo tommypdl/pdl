@@ -1,0 +1,302 @@
+Sticks
+Description
+George took sticks of the same length and cut them randomly until all parts became at most 50 units long.
+ Now he wants to return sticks to the original state, but he forgot how many sticks he had originally and how long they were originally.
+ Please help him and design a program which computes the smallest possible original length of those sticks. 
+All lengths expressed in units are integers greater than zero.
+Input
+The input contains blocks of 2 lines. The first line contains the number of sticks parts after cutting, 
+there are at most 64 sticks. The second line contains the lengths of those parts separated by the space. 
+The last line of the file contains zero.
+Output
+The output should contains the smallest possible length of original sticks, one per line.
+Sample Input
+9
+5 2 1 5 2 1 5 2 1
+4
+1 2 3 4
+0
+Sample Output
+6
+5
+
+
+#include <stdio.h>
+#include <string.h>
+#include <algorithm>
+using namespace std;
+
+bool vis[65];
+int stick[65];
+int n, initlen, cnt;
+
+bool cmp(int x, int y)
+{
+    return x > y;
+}
+
+bool dfs(int num, int len, int s)//sÎªËÑË÷Æðµã
+{
+    if (num == cnt)
+        return true;
+    int same = -1;
+    for (int i = s; i < n; i++)
+    {
+        if (vis[i] || stick[i] == same)   //¼ôÖ¦3
+            continue;
+        vis[i] = true;
+        if (len+stick[i] < initlen)
+        {
+            if (dfs(num, len+stick[i], i))
+                return true;
+            else
+                same = stick[i];
+        }
+        else if (len+stick[i] == initlen)
+        {
+            if (dfs(num+1, 0, 0))
+                return true;
+            else
+                same = stick[i];
+        }
+        vis[i] = false;
+        if (len == 0)       //¼ôÖ¦4
+            break;
+    }
+    return  false;
+}
+
+int main()
+{
+    while (scanf("%d", &n) && n)
+    {
+        int sumlen = 0;
+        int maxlen = 0;
+        for (int i = 0; i < n; i++)
+        {
+            scanf("%d", &stick[i]);
+            sumlen += stick[i];
+            if (stick[i] > maxlen)
+                maxlen = stick[i];
+        }
+        sort(stick, stick+n, cmp);
+        for (initlen = maxlen; initlen <= sumlen; initlen++)// ¼ôÖ¦1
+        {
+            if (sumlen%initlen)  //¼ôÖ¦2
+                continue;
+            cnt = sumlen/initlen;
+            memset(vis, false, sizeof(vis));
+            if (dfs(1, 0, 0))
+            {
+                printf("%d\n", initlen);
+                break;
+            }
+        }
+    }
+    return 0;
+}
+
+
+
+
+import java.util.Scanner;
+
+public class sticks {
+	private static Node head,test;
+	private static int sum=0;
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		
+		int n,i,l,Limit,res;
+		sticks s;
+		while(true)
+		{
+			n=sc.nextInt();
+			if(n==0)break;
+			sum=0;res=0;
+			s=new sticks();
+			s.head=s.new Node();s.test=s.new Node();
+			Node temp,t,divisorHead;
+			for(i=0;i<n;i++)
+			{
+				t=s.head;
+				l=sc.nextInt();
+				sum+=l;
+				for(;;t=t.next)
+				{
+					if(t.next==null)
+					{
+						temp=s.new Node();temp.lenght=l;t.next=temp;break;
+					}
+					else if(t.next.lenght<l)
+					{
+						temp=s.new Node();temp.lenght=l;temp.next=t.next;t.next=temp;break;
+					}
+					else if(t.next.lenght==l)
+					{
+						t.next.num++;break;
+					}
+					else continue;
+				}
+			}
+			Limit=(int) Math.sqrt(sum);
+			divisorHead=s.new Node();t=divisorHead;
+			for(i=s.head.next.lenght;i<Limit+1;i++)
+			{
+				if(sum%i==0)
+				{
+					s.copy();
+					temp=s.new Node();temp.divisor=sum/i;temp.last=t;t.next =temp;t=t.next;
+					if(tryd(i,s))
+					{
+						System.out.println(i);res++;
+						break;
+					}
+				}
+			}
+			if(res==0)
+			{
+				if(t!=divisorHead)if((sum/t.divisor)==t.divisor)t=t.last;
+				if(i==Limit+1||i==s.head.next.lenght)
+				{
+					for(;t!=divisorHead;t=t.last)
+					{
+						s.copy();
+						if(tryd(t.divisor,s))
+						{
+							System.out.println(t.divisor);
+							break;
+						}
+					}
+					if(t==divisorHead)
+					{
+						for(i=s.head.next.lenght-1;i>0;i--)
+						{
+							if(sum%i==0)
+							{
+								s.copy();
+								if(tryd(sum/i,s))
+								{
+									System.out.println(sum/i);
+									break;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	private static boolean tryd(int x, sticks s) {
+		// TODO Auto-generated method stub
+		int num=sum/x;
+		return assemble(1,num,s);
+	}
+
+	private static boolean assemble(int x, int num, sticks s) {
+		// TODO Auto-generated method stub
+		if(x==num)return true;
+		int l=sum/num;
+		Node t=s.test.next,t1 = null;
+		for(;t!=null;t=t.next)
+		{
+			if(t.num!=0)
+			{
+				t1=t;
+				l-=t.lenght;
+				t.num--;
+				if(l==0)return assemble(x+1, num, s);
+				break;
+			}
+		}
+		for(;t!=null;t=t.next)
+		{
+			if(t.lenght>l)continue;
+			if(t.num!=0)
+			{
+				if(t.lenght==l)
+				{
+					t.num--;
+					if(assemble(x+1, num, s))return true;
+					else
+					{
+						t1.num++;
+						t.num++;
+						return false;
+					}
+				}
+				else
+				{
+					if(assemble2(l,x,num,s,t))return true;
+					else
+					{
+						t1.num++;
+						return false;
+					}
+				}
+			}
+		}
+		return false;
+	}
+
+	private static boolean assemble2(int l, int x, int num, sticks s, Node t) {
+		// TODO Auto-generated method stub
+		int i;
+		if(t.next==null)
+		{
+			i=l/t.lenght;
+			if(i>t.num)return false;
+			else
+			{
+				if(i*t.lenght==l)
+				{
+					t.num-=i;
+					if(assemble(x+1, num, s))return true;
+					else
+					{
+						t.num+=i;
+						return false;
+					}
+				}
+				else return false;
+			}
+		}
+		else
+		{
+			if(l/t.lenght>t.num)i=t.num;
+			else i=l/t.lenght;
+			for(;i>=0;i--)
+			{
+				t.num-=i;
+				if(l-i*t.lenght==0)
+				{
+					if(assemble(x+1, num, s)) return true;
+				}
+				else if(assemble2(l-i*t.lenght, x, num, s, t.next)) return true;
+				t.num+=i;
+			}
+		}
+		return false;
+	}
+
+	private void copy() {
+		// TODO Auto-generated method stub
+		Node cph=head.next,past,t;
+		test=new Node();t=test;
+		while(cph!=null)
+		{
+			past=new Node();past.lenght=cph.lenght;past.num=cph.num;
+			t.next=past;
+			t=t.next;
+			cph=cph.next;
+		}
+	}
+
+	class Node{  	
+		public int lenght,num=1,divisor;
+		public Node next=null,last=null;
+	}
+}

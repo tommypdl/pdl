@@ -1,0 +1,70 @@
+Problem Description
+Let A be an integral series {A1, A2, . . . , An}.
+
+The zero-order series of A is A itself.
+
+The first-order series of A is {B1, B2, . . . , Bn-1},where Bi = Ai+1 - Ai.
+
+The ith-order series of A is the first-order series of its (i - 1)th-order series (2<=i<=n - 1).
+
+Obviously, the (n - 1)th-order series of A is a single integer. Given A, figure out that integer.
+ 
+
+Input
+The input consists of several test cases. The first line of input gives the number of test cases T (T<=10).
+
+For each test case:
+The first line contains a single integer n(1<=n<=3000), which denotes the length of series A.
+The second line consists of n integers, describing A1, A2, . . . , An. (0<=Ai<=105)
+ 
+
+Output
+For each test case, output the required integer in a line.
+ 
+
+Sample Input
+2
+3
+1 2 3
+4
+1 5 7 2
+ 
+
+Sample Output
+0
+-5
+
+开始没考虑太多，直接暴力一交，WA
+暴力最多超时，怎么WA呢，第一个想法就是，大数
+大数怎么能忘记JAVA呢？C++写大数太麻烦了，果断JAVA变成水题
+
+
+import java.math.BigInteger;  
+import java.util.*;  
+import java.io.*;  
+  
+public class Main {  
+  
+    public static void main(String args[]) {  
+        Scanner in = new Scanner(System.in);  
+        int t = in.nextInt();  
+        int a[] = new int[3005];  
+        for (int cas = 1; cas <= t; cas++) {  
+            int n = in.nextInt();  
+            int  i, j;  
+            for (i = 1; i <= n; ++i) {  
+                a[i] = in.nextInt();  
+            }  
+            BigInteger ans = BigInteger.valueOf(a[n]);  
+            BigInteger x = BigInteger.valueOf(1);  
+            BigInteger flag = BigInteger.valueOf(-1);  
+            n = n -1;  
+            for(i=1,j=n; i<=n; i++,j--)  
+            {  
+                x = x.multiply(BigInteger.valueOf(j)).divide(BigInteger.valueOf(i));  
+                x = x.multiply(flag);  
+                ans = ans.add(x.multiply(BigInteger.valueOf(a[j])));  
+            }  
+            System.out.println(ans);  
+        }  
+    }  

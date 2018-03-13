@@ -1,0 +1,8 @@
+最大公约数
+
+public static int f(int a,int b){
+		if(b==0)return a;
+		else return f(b,a%b);
+	}
+
+测试数据样本：25 20

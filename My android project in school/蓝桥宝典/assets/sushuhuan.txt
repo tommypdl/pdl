@@ -1,0 +1,121 @@
+素数环问题
+把从1到20这20个数摆成一个环，要求相邻的两个数的和是一个素数。
+分析：用回溯算法，考察所有可能的排列。
+
+#include <stdio.h>
+#include <math.h>
+ 
+void search(int);
+void init();            //初始化
+void printresult();     //打印结果
+int isprime(int);       //判断该数是否是素数
+void swap(int,int);     //交换a[m]和a[i]
+int a[21];        //a数组存放素数环
+ 
+int main()
+{
+    init();
+    search(2); //递归搜索
+}
+int isprime(int num)
+{
+    int i,k;
+    k=sqrt(num);
+    for(i=2;i<=k;i++)
+        if(num%i==0)
+            return(0);
+    return(1);
+}
+void printresult()
+{
+    int i;
+    for(i=1;i<=20;i++)
+        printf("=",a[i]);
+    printf("\n");
+}
+void search(int m)
+{
+    int i;
+    if(m>20) //当已经搜索到叶结点时
+    {
+        if(isprime(a[1]+a[20])) //如果a[1]+a[20]也是素数
+            printresult(); //输出当前解
+        return;
+    }
+    else
+    {
+    for(i=m;i<=20;i++) //(排列树)
+    {
+        swap(m,i); //交换a[m]和a[i]
+        if(isprime(a[m-1]+a[m])) //判断a[m-1]+a[m]是否是素数
+            search(m+1); //递归搜索下一个位置
+        swap(m,i); //把a[m]和a[i]换回来
+    }
+}
+}
+void swap(int m, int i)
+{
+    int t;
+    t=a[m];
+    a[m]=a[i];
+    a[i]=t;
+}
+void init()
+{
+    int i;
+    for(i=0;i<21;i++)
+        a[i]=i;
+}
+
+
+
+
+import java.util.*;
+class sushuhuan{
+	public static void main(String args[]){
+		Scanner s=new Scanner(System.in);
+		int n=s.nextInt();
+		dfs(n);
+	}
+	public static boolean isPrime(int n){
+		for(int i=2;i<n;i++)
+			if(n%i==0)
+				return false;
+		return true;
+	}
+	public static void dfs(int n){
+		int values[]=new int[n+1];
+		for(int i=0;i<n;i++)
+			values[i]=i+1;
+		values[n]=1;
+		StringBuffer sb=new StringBuffer();
+		List l=new ArrayList();
+		l.add(values);
+		while(l.size()>0){
+			int temp[]=(int[])l.get(0);
+			int index=temp[n];
+			for(int k=temp[n];k<n;k++){
+				if(isPrime(temp[index-1]+temp[k])){
+					if(index==n-1&&isPrime(temp[index]+1)){
+						for(int j=0;j<n;j++)
+							sb.append(temp[j]+" ");
+						sb.append("\n");
+						continue;
+					}
+					int newvalues[]=Arrays.copyOf(temp,temp.length);
+					if(index!=k){
+						int t=newvalues[index];
+						newvalues[index]=newvalues[k];
+						newvalues[k]=t;
+					}
+					newvalues[n]=newvalues[n]+1;
+					l.add(0,newvalues);
+				}
+			}
+			l.remove(temp);
+		}
+		System.out.print(sb.toString());
+	}
+}
+
+点击菜单可测试，测试数据例如：6

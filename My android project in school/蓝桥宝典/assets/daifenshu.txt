@@ -1,0 +1,98 @@
+带分数
+
+    100 可以表示为带分数的形式：100 = 3 + 69258 / 714
+
+    还可以表示为：100 = 82 + 3546 / 197
+
+    注意特征：带分数中，数字1~9分别出现且只出现一次（不包含0）。
+
+    类似这样的带分数，100 有 11 种表示法。
+
+题目要求：
+从标准输入读入一个正整数N (N<1000*1000)
+程序输出该数字用数码1~9不重复不遗漏地组成带分数表示的全部种数。
+注意：不要求输出每个表示，只统计有多少表示法！
+
+
+例如：
+用户输入：
+100
+程序输出：
+11
+
+再例如：
+用户输入：
+105
+程序输出：
+6
+
+
+
+
+import java.util.*;
+
+public class A
+{
+	static int N;
+	static int COUNT;
+	
+	static int col(int[] zu, int a, int b)
+	{
+		int t = 0;
+		for(int i=a; i<b; i++) t = t*10 + zu[i];
+		return t;
+	}
+	
+	static void g(int[] zu)
+	{		
+		for(int i=1; i<zu.length-1; i++)
+		for(int j=i+1; j<zu.length; j++)
+		{
+			int a = col(zu,0,i);
+			int b = col(zu,i,j);
+			int c = col(zu,j,zu.length);
+			
+			if(b%c!=0) continue;
+			
+			if(a+b/c==N){
+				System.out.println(a + " + " + b + " / " + c);
+				COUNT++;
+			}
+		}
+	}
+	
+	static void pai(int[] zu, int k)
+	{
+		if(k==zu.length-1)
+		{
+			g(zu);
+			return;
+		}
+		
+		for(int i=k; i<zu.length; i++)
+		{
+			{int t=zu[k]; zu[k]=zu[i]; zu[i]=t;}
+			pai(zu,k+1);
+			{int t=zu[k]; zu[k]=zu[i]; zu[i]=t;}
+		}
+	}
+	
+	static void test(int n)
+	{
+		N = n;
+		COUNT = 0;
+		int[] t = {1,2,3,4,5,6,7,8,9};
+		pai(t,0);
+		System.out.println("COUNT == " + COUNT);
+	}
+	
+	public static void main(String[] args)
+	{	
+		test(10);
+		test(1111);
+		test(2013);	
+	}
+}
+
+
+点击菜单栏可测试，测试数据例如：100

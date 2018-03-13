@@ -1,0 +1,38 @@
+求k的n次方，结果对mod取模
+当k=3时,mod=19，代码如下：
+public class A
+{
+	// 分治
+	public static int g(int n)
+	{
+		if(n==0) return 1;
+		if(n==1) return 3;
+		
+		int m = n/2;
+		int a = g(m);
+		if(n%2==0)
+			return a * a % 19;
+		else
+			return a * a * 3 % 19;
+	}
+	
+	// 3的n次幂，对19模，暴力
+	public static int f(int n)
+	{
+		int x = 1;
+		for(int i=0; i<n; i++){
+			x = (x*3)%19;
+		}
+		return x;
+	}
+	
+	public static void main(String[] args)
+	{
+		System.out.println(f(1000000000));
+		System.out.println("-------------------");
+		System.out.println(g(1000000000));
+	}
+}
+
+点击菜单可测试，测试数据例如:3 20 19
+表示3的20次方对19取模

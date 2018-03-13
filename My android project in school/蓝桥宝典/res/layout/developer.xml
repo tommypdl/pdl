@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <lqb.surfacec
+        android:id="@+id/surfaceView1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp" 
+       />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="开发人员：彭敦亮，廖建宏，庄远为"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:text="如果你想要更深入的了解，请联系我，我的QQ/微信：957784991" 
+        />
+
+</LinearLayout>

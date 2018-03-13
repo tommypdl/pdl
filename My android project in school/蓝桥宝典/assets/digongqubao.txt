@@ -1,0 +1,51 @@
+从左上角开始，只能向右或向下，当前格子的宝贝价值比已获得的任意宝贝价值都大，
+才可以拿走，求所有方案数
+
+import java.util.Scanner;
+
+
+ class digong {
+static int[][]arr;
+static int n,m,k,num;
+public static void main(String[] args) {
+Scanner scan=new Scanner(System.in);
+n=scan.nextInt();
+m=scan.nextInt();
+k=scan.nextInt();
+
+arr=new int[n][m];
+for(int i=0;i<arr.length;i++){
+for(int j=0;j<arr[i].length;j++){
+arr[i][j]=scan.nextInt();
+}
+} 
+
+f(0,0,0,"");
+System.out.println(num);
+}
+
+static void f(int h,int l,int tem,String s){
+if(h>=n||l>=m)return;
+
+if(h==n-1&&l==m-1){//最后一个
+if(jg(s,arr[h][l])){
+if(tem+1==k)num=(num+1)%1000000007; 
+}
+if(tem==k)num=(num+1)%1000000007;
+}
+
+if(jg(s,arr[h][l]))f(h+1,l,tem+1,s+arr[h][l]);
+f(h+1,l,tem,s);
+
+if(jg(s,arr[h][l]))f(h,l+1,tem+1,s+arr[h][l]);
+f(h,l+1,tem,s);
+}
+
+//格子中的宝贝价值比小明手中任意宝贝价值都大
+static boolean jg(String s,int p){
+for(int i=0;i<s.length();i++){
+if(p<=(s.charAt(i)-'0'))return false;
+}
+return true;
+}
+}

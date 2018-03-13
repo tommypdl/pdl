@@ -1,0 +1,133 @@
+问题描述
+抗日战争时期，冀中平原的地道战曾发挥重要作用。
+
+地道的多个站点间有通道连接，形成了庞大的网络。但也有隐患，当敌人发现了某个站点后，其它站点间可能因此会失去联系。
+
+我们来定义一个危险系数DF(x,y)：
+
+对于两个站点x和y (x != y), 如果能找到一个站点z，当z被敌人破坏后，x和y不连通，那么我们称z为关于x,y的关键点。相应的，对于任意一对站点x和y，危险系数DF(x,y)就表示为这两点之间的关键点个数。
+
+本题的任务是：已知网络结构，求两站点之间的危险系数。
+
+输入格式
+输入数据第一行包含2个整数n(2 <= n <= 1000), m(0 <= m <= 2000),分别代表站点数，通道数；
+
+接下来m行，每行两个整数 u,v (1 <= u, v <= n; u != v)代表一条通道；
+
+最后1行，两个数u,v，代表询问两点之间的危险系数DF(u, v)。
+
+输出格式
+一个整数，如果询问的两点不连通则输出-1.
+样例输入
+7 6
+1 3
+2 3
+3 4
+3 5
+4 5
+5 6
+1 6
+样例输出
+2
+
+
+import java.util.ArrayList;  
+import java.util.List;  
+import java.util.Scanner;  
+  
+public class Main {  
+  
+    public static void main(String[] args) {  
+        // TODO Auto-generated method stub  
+        Scanner scanner = new Scanner(System.in);  
+        int n = scanner.nextInt();  
+        int m = scanner.nextInt();  
+        TuNode[] tuNodes = new TuNode[n];  
+        List<TuNode> geDian=new ArrayList<TuNode>();  
+        int i;  
+        for (i = 0; i < n; i++) {  
+            tuNodes[i] = new TuNode(i + 1);  
+            geDian.add(tuNodes[i]);  
+        }  
+        int x;  
+        int y;  
+        for (i = 0; i < m; i++) {  
+            x = scanner.nextInt();  
+            y = scanner.nextInt();  
+            tuNodes[x - 1].jiedian.add(tuNodes[y - 1]);  
+            tuNodes[y - 1].jiedian.add(tuNodes[x - 1]);  
+        }  
+        int qiDian=scanner.nextInt();  
+        int zhongDian=scanner.nextInt();  
+        List<TuNode> jiHe = new ArrayList<TuNode>();  
+        jiHe.add(tuNodes[qiDian-1]);  
+          
+        List<TuNode> list =search(tuNodes[qiDian-1], tuNodes[zhongDian-1], jiHe,geDian);  
+  
+        if (list.size() == 0) {  
+            System.out.println("-1");  
+        } else {  
+            System.out.print(geDian.size()-2);  
+        }  
+    }  
+  
+    public static List<TuNode> search(TuNode qiDian, TuNode zhongDian,  
+            List<TuNode> jiHe,List<TuNode> geDian) {  
+        int i;  
+  
+        List<TuNode> listTemp1;  
+  
+        List<TuNode> listTemp2 = new ArrayList<TuNode>();  
+  
+        List<TuNode> listTemp3 = new ArrayList<TuNode>();  
+  
+        for (i = 0; i < qiDian.jiedian.size(); i++) {  
+  
+            
+            listTemp1 = new ArrayList<TuNode>(jiHe);  
+  
+            
+            listTemp2.add(qiDian.jiedian.get(i));  
+  
+           
+            listTemp2.retainAll(listTemp1);  
+  
+  
+            if (qiDian.jiedian.get(i).value == zhongDian.value) {  
+  
+                listTemp1.add(qiDian.jiedian.get(i));  
+                geDian.retainAll(listTemp1);  
+                  
+                return listTemp1;  
+            } else if (listTemp2.size() == 0) {  
+  
+                listTemp1.add(qiDian.jiedian.get(i));  
+  
+                List<TuNode> listTemp4 = new ArrayList<TuNode>(listTemp1);  
+  
+                List<TuNode> listTemp5 = search(qiDian.jiedian.get(i),  
+                        zhongDian, listTemp4,geDian);  
+                if (listTemp3.size() != 0) {  
+                    if (listTemp5.size() < listTemp3.size()  
+                            && listTemp5.size() != 0) {  
+                        listTemp3 = new ArrayList<TuNode>(listTemp5);  
+                    }  
+                } else {  
+                    listTemp3 = new ArrayList<TuNode>(listTemp5);  
+                }  
+            }  
+            listTemp2.clear();  
+        }  
+        return listTemp3;  
+    }  
+}  
+  
+class TuNode {  
+    int value;  
+    List<TuNode> jiedian = new ArrayList<TuNode>();  
+  
+    public TuNode(int value) {  
+        // TODO Auto-generated constructor stub  
+        this.value = value;  
+    }  
+}  

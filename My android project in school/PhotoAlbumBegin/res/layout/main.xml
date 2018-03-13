@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout
+android:id="@+id/widget0"
+android:background="@drawable/bg_photo1"
+android:layout_width="fill_parent"
+android:layout_height="fill_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+>
+<ImageButton
+android:id="@+id/ImageButton_close"
+android:layout_width="50px"
+android:layout_height="40px"
+android:layout_x="750px"
+android:layout_y="5px"
+>
+</ImageButton>
+<ImageButton
+android:id="@+id/ImageButton_help"
+android:layout_width="50px"
+android:layout_height="40px"
+android:layout_x="680px"
+android:layout_y="5px"
+>
+</ImageButton>
+<TextView
+android:id="@+id/TextView_hour"
+android:layout_width="30px"
+android:layout_height="30px"
+android:textSize="25px"
+android:layout_x="590px"
+android:layout_y="8px"
+>
+</TextView>
+<TextView
+android:id="@+id/widget30"
+android:layout_width="10px"
+android:layout_height="25px"
+android:text=":"
+android:textSize="25px"
+android:layout_x="620px"
+android:layout_y="6px"
+>
+</TextView>
+<TextView
+android:id="@+id/TextView_minute"
+android:layout_width="30px"
+android:layout_height="30px"
+android:textSize="25px"
+android:layout_x="630px"
+android:layout_y="8px"
+>
+</TextView>
+<ImageButton
+android:id="@+id/ImageButton_next"
+android:layout_width="55px"
+android:layout_height="55px"
+android:layout_x="775px"
+android:layout_y="235px"
+>
+</ImageButton>
+<ImageButton
+android:id="@+id/ImageButton_take_photo"
+android:layout_width="140px"
+android:layout_height="40px"
+android:layout_x="20px"
+android:layout_y="430px"
+>
+</ImageButton>
+<TextView
+android:id="@+id/TextView_photo_num"
+android:layout_width="315px"
+android:layout_height="40px"
+android:textColor="#ffffffff"
+android:gravity="center"
+android:text="共28张相片"
+android:layout_x="270px"
+android:layout_y="430px"
+>
+</TextView>
+<ImageButton
+android:id="@+id/ImageButton_synchro_photo"
+android:layout_width="140px"
+android:layout_height="40px"
+android:layout_x="650px"
+android:layout_y="430px"
+>
+</ImageButton>
+<Spinner android:layout_width="230px" android:id="@+id/Spinner" android:layout_height="55px" android:layout_x="4dp" android:layout_y="25dp"></Spinner>
+<ImageButton android:layout_width="55px" android:id="@+id/ImageButton_pre" android:layout_height="55px" android:layout_x="11dp" android:layout_y="143dp"></ImageButton>
+<TableLayout android:layout_width="wrap_content" android:id="@+id/tableLayout1" android:layout_height="wrap_content" android:layout_x="68dp" android:layout_y="56dp">
+    <TableRow android:layout_width="wrap_content" android:id="@+id/tableRow1" android:layout_height="wrap_content">
+        <ImageView android:id="@+id/ImageView1" android:layout_height="145px" android:layout_width="205px"></ImageView>
+        <ImageView android:id="@+id/ImageView2" android:layout_height="145px" android:layout_width="205px"></ImageView>
+        <ImageView android:id="@+id/ImageView3" android:layout_height="145px" android:layout_width="205px"></ImageView>
+    </TableRow>
+    <TableRow android:layout_width="wrap_content" android:id="@+id/tableRow2" android:layout_height="wrap_content">
+        <ImageView android:id="@+id/ImageView4" android:layout_height="145px" android:layout_width="205px"></ImageView>
+        <ImageView android:id="@+id/ImageView5" android:layout_height="145px" android:layout_width="205px"></ImageView>
+        <ImageView android:id="@+id/ImageView6" android:layout_height="145px" android:layout_width="205px"></ImageView>
+    </TableRow>
+</TableLayout>
+</AbsoluteLayout>

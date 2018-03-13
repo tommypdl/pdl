@@ -1,0 +1,241 @@
+第一：
+将一个整数 n 划分为 不超过m 组 的划分数 如 
+n=4
+m=3
+输出：
+4 { 1+1+2=1+3=2+2=4}
+思路：使用动态规划： 定义状态： dp[i][j] j的i划分的组数
+递推：dp[i][j]=dp[i][j-i]+dp[i-1][j] ------当m=n时，变成了常见的整数划分问题
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int maxn=1000+10;
+int dp[maxn][maxn],n,m;
+void sovle(){
+  dp[0][0]=1;
+  for(int i=1;i<=m;i++){
+    for(int j=0;j<=n;j++){
+      if(j-i>=0){
+        dp[i][j]=dp[i][j-i]+dp[i-1][j];
+      }
+      else dp[i][j]=dp[i-1][j];
+    }
+  }
+  
+}
+int main()
+{
+  memset(dp,0,sizeof(dp));
+  n=4;m=4;
+  sovle(); 
+  cout<<dp[m][n]<<endl;
+}
+
+第二：
+我们用递归+记忆化的方法来解决普通整数划分问题：定义 f(n,m)为将整数n划分为一系列整数之和，其中加数
+最大不超过m。
+得到下面的递推关系式：
+ 当n==1 || m==1 只有一种划分，即 1 或者 1+1+1......+1
+当m>n 显然，等价于 f(n,n)
+当m==n 此时：我考虑加数包含m与否的两种情况：
+1）划分不包含m，即f(n,m-1)---所有m-1的划分
+2)划分包含 m，此时只有一种即 m
+所以当m==n时，有 f(n,m)=f(n,m-1)+1
+当m<n时，
+1）包含m时，{m,x1,x2,x3....xi}此时 等价于 f(n-m,m)
+2）不包含m时，显然f(n,m-1)
+所以f(n,m)=f(n,m-1)+f(n-m,m)
+采用记忆化技术优化复杂度：
+#include<iostream>
+#include<cstring>
+using namespace std;
+const int maxn=1000+10;
+int f[maxn][maxn];
+int  getspilit(int n,int m)
+{
+  if(n==1||m==1)return 1;
+  if(m>n){
+    if(f[n][m]!=-1)return f[n][m];
+    return f[n][m]=getspilit(n,n);
+  }
+  if(n==m){
+    if(f[n][m]!=-1)return f[n][m];
+    return f[n][m]=getspilit(n,m-1)+1;
+  } 
+  return f[n][m]=(getspilit(n-m,m)+getspilit(n,m-1));
+}
+int main()
+{
+  int n=4,m=4;
+  memset(f,-1,sizeof(f));
+  cout<<getspilit(n,m)<<endl;
+  return 0;
+}
+
+第三：
+将整数n划分为一系列连续的整数之和即：
+15=7+8
+    =4+5+6
+    =1+2+3+4
+这里我们假设划分之后最小的整数位x ，那么 x+(x+1)+(x+2)......+(x+m)假设一共有i个整数，整理得：
+x*i+i*(i-1)/2=n
+i=1,2,3.....其中i的限制条件为：s1= i*(i-1)/2<=n，只有当x为整数时才有可能。
+#include<iostream>
+#include<cstring>
+using namespace std;
+int getsplit(int n)
+{
+  int i,s1,s2,x,sum=0;
+  for(i=1;(s1=i*(i-1)/2)<=n;i++)
+  {
+    s2=n-s1;
+    x=s2/i;
+    if(x==0)break;
+    if(s2%i==0)
+    {
+      cout<<x<<" ";
+      for(int j=1;j<i;j++)cout<<x+j<<" ";
+      cout<<endl;
+      sum++;
+    }
+  }
+  return sum;
+}
+int main()
+{
+  int n=15;
+  cout<<getsplit(n)-1<<" methods to split the number."<<endl;
+}
+
+
+
+
+
+
+整数划分 －－－ 一个老生长谈的问题:
+　　1) 练练组合数学能力.
+　　2) 练练递归思想
+　　3) 练练DP
+　　总之是一道经典的不能再经典的题目:
+　　这道好题求:
+　　1. 将n划分成若干正整数之和的划分数。
+　　2. 将n划分成k个正整数之和的划分数。
+　　3. 将n划分成最大数不超过k的划分数。
+　　4. 将n划分成若干奇正整数之和的划分数。
+　　5. 将n划分成若干不同整数之和的划分数。
+
+ 
+
+1.将n划分成不大于m的划分法： 
+
+ 　　1).若是划分多个整数可以存在相同的：
+
+ 　　 dp[n][m]= dp[n][m-1]+ dp[n-m][m]  dp[n][m]表示整数 n 的划分中，每个数不大于 m 的划分数。
+     　　则划分数可以分为两种情况:
+     　　a.划分中每个数都小于 m，相当于每个数不大于 m- 1, 故划分数为 dp[n][m-1].
+    　　 b.划分中有一个数为 m. 那就在 n中减去 m ,剩下的就相当于把 n-m 进行划分， 故划分数为 dp[n-m][m];
+
+　　2).若是划分多个不同的整数：
+
+　　dp[n][m]= dp[n][m-1]+ dp[n-m][m-1]   dp[n][m]表示整数 n 的划分中，每个数不大于 m 的划分数。
+   　　 同样划分情况分为两种情况：
+    　　a.划分中每个数都小于m,相当于每个数不大于 m-1,划分数为 dp[n][m-1].
+    　　b.划分中有一个数为 m.在n中减去m,剩下相当对n-m进行划分，
+
+　　　并且每一个数不大于m-1，故划分数为 dp[n-m][m-1]
+
+2.将n划分成k个数的划分法：
+
+　dp[n][k]= dp[n-k][k]+ dp[n-1][k-1];
+
+   　　方法可以分为两类：
+   　　　　第一类: n 份中不包含 1 的分法，为保证每份都 >= 2，可以先拿出 k 个 1 分
+   　　到每一份，然后再把剩下的 n- k 分成 k 份即可，分法有: dp[n-k][k]
+  　　 　　第二类: n 份中至少有一份为 1 的分法，可以先那出一个 1 作为单独的1份，剩
+   　　下的 n- 1 再分成 k- 1 份即可，分法有：dp[n-1][k-1]
+
+　　　
+
+3.将n划分成若干奇数的划分法：
+
+　　　　g[i][j]:将i划分为j个偶数
+
+　　　　f[i][j]:将i划分为j个奇数
+　　   g[i][j] = f[i - j][j]; 
+   　　f[i][j] = f[i - 1][j - 1] + g[i - j][j];
+
+ 方法可以分为两类：
+
+  第一类：i中拿出j个1分到每一份中，将剩余的i-j分成j个奇数
+
+  第二类：一份包含奇数1，剩余的i-1分成j-1个奇数；另一种，每份至少大于1，将j个1拿出来分到每一份中，其余i-j分成j份
+
+
+　　代码如下所示（转载）：
+
+复制代码
+/*
+ * hit1402.c
+ *
+ *  Created on: 2011-10-11
+ *      Author: bjfuwangzhu
+ */
+
+#include<stdio.h>
+#include<string.h>
+#define nmax 51
+int num[nmax][nmax]; //将i划分为不大于j的个数
+int num1[nmax][nmax]; //将i划分为不大于j的不同的数
+int num2[nmax][nmax]; //将i划分为j个数
+int f[nmax][nmax]; //将i划分为j个奇数
+int g[nmax][nmax]; //将i划分为j个偶数
+void init() {
+    int i, j;
+    for (i = 0; i < nmax; i++) {
+        num[i][0] = 0, num[0][i] = 0, num1[i][0] = 0, num1[0][i] = 0, num2[i][0] =
+                0, num2[0][i] = 0;
+    }
+    for (i = 1; i < nmax; i++) {
+        for (j = 1; j < nmax; j++) {
+            if (i < j) {
+                num[i][j] = num[i][i];
+                num1[i][j] = num1[i][i];
+                num2[i][j] = 0;
+            } else if (i == j) {
+                num[i][j] = num[i][j - 1] + 1;
+                num1[i][j] = num1[i][j - 1] + 1;
+                num2[i][j] = 1;
+
+            } else {
+                num[i][j] = num[i][j - 1] + num[i - j][j];
+                num1[i][j] = num1[i][j - 1] + num1[i - j][j - 1];
+                num2[i][j] = num2[i - 1][j - 1] + num2[i - j][j];
+            }
+        }
+    }
+    f[0][0] = 1, g[0][0] = 1;
+    for (i = 1; i < nmax; i++) {
+        for (j = 1; j <= i; j++) {
+            g[i][j] = f[i - j][j];
+            f[i][j] = f[i - 1][j - 1] + g[i - j][j];
+        }
+    }
+}
+int main() {
+#ifndef ONLINE_JUDGE
+    freopen("data.in", "r", stdin);
+#endif
+    int n, k, i, res0, res1, res2, res3, res4;
+    init();
+    while (~scanf("%d %d", &n, &k)) {
+        res0 = num[n][n];
+        res1 = num2[n][k];
+        res2 = num[n][k];
+        for (i = 0, res3 = 0; i <= n; i++) {
+            res3 += f[n][i];
+        }
+        res4 = num1[n][n];
+        printf("%d\n%d\n%d\n%d\n%d\n\n", res0, res1, res2, res3, res4);
+    }
+    return 0;
+}
