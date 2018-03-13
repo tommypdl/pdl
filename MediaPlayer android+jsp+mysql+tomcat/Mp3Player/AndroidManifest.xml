@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="pdl.mp3player"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="8"
+        android:targetSdkVersion="18" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="pdl.mp3player.First"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+      	<activity
+            android:name="pdl.mp3player.LoginActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.LoginSuccessActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.RegistActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.RegistSuccessActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.MainActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.Mp3ListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.LocalMp3ListActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
+            android:name="pdl.mp3player.PlayerActivity"
+            android:label="@string/app_name" >
+        </activity>
+         <activity
+            android:name="pdl.mp3player.losuccess"
+            android:label="Login Success" >
+        </activity>
+        <activity
+            android:name="pdl.video.videoList"
+            android:label="视频列表" >
+        </activity>
+        <activity
+            android:name="pdl.video.videotalk"
+            android:label="视频评论" >
+        </activity>
+        <activity
+            android:name="pdl.video.VideoActivity"
+             >
+        </activity>
+
+        <service android:name="pdl.service.DownloadService" >
+        </service>
+        
+        <service android:name="pdl.service.PlayerService" />
+    </application>
+
+</manifest>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>LoginServlet</servlet-name>
+    <servlet-class>pdl.LoginServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>RegistServlet</servlet-name>
+    <servlet-class>pdl.RegistServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>TalkServlet</servlet-name>
+    <servlet-class>pdl.TalkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>AddTalkServlet</servlet-name>
+    <servlet-class>pdl.AddTalkServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>getNickNameServlet</servlet-name>
+    <servlet-class>pdl.getNickNameServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>UploadServlet</servlet-name>
+    <servlet-class>pdl.UploadServlet</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteUserFormWeb</servlet-name>
+    <servlet-class>pdl.servlet.DeleteUserFormWeb</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>InsertTalkFromWeb</servlet-name>
+    <servlet-class>pdl.servlet.InsertTalkFromWeb</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>EditTalkFromWeb</servlet-name>
+    <servlet-class>pdl.servlet.EditTalkFromWeb</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>DeleteTalkFormWeb</servlet-name>
+    <servlet-class>pdl.servlet.DeleteTalkFormWeb</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet</servlet-name>
+    <url-pattern>/LoginServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RegistServlet</servlet-name>
+    <url-pattern>/RegistServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>TalkServlet</servlet-name>
+    <url-pattern>/TalkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>AddTalkServlet</servlet-name>
+    <url-pattern>/AddTalkServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>getNickNameServlet</servlet-name>
+    <url-pattern>/getNickNameServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>UploadServlet</servlet-name>
+    <url-pattern>/UploadServlet</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteUserFormWeb</servlet-name>
+    <url-pattern>/servlet/DeleteUserFormWeb</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>InsertTalkFromWeb</servlet-name>
+    <url-pattern>/servlet/InsertTalkFromWeb</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>EditTalkFromWeb</servlet-name>
+    <url-pattern>/servlet/EditTalkFromWeb</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>DeleteTalkFormWeb</servlet-name>
+    <url-pattern>/servlet/DeleteTalkFormWeb</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>

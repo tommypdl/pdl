@@ -1,0 +1,46 @@
+﻿<header>
+<nav class="top-nav">
+<div class="container">
+	<div class="nav-wrapper">
+		<a class="page-title" id="page_title"></a>
+	</div>
+</div>
+</nav>
+<ul id="nav-mobile" class="side-nav fixed">
+	<li class="logo">
+		<div class="search-wrapper card" onclick="location.href='index.jsp';">
+			后台管理系统
+		</div>
+	</li>
+	<li class="search">
+		<div class="search-wrapper card">
+		</div>
+	</li>
+	<li class="bold">
+		<a href="user_list.jsp" class="waves-effect waves-teal">用户管理</a>
+	</li>
+	<li class="no-padding">
+		<ul class="collapsible collapsible-accordion">
+			<li class="bold">
+				<a class="collapsible-header waves-effect waves-teal">评论管理</a>
+				<div class="collapsible-body">
+					<ul>
+						<li>
+							<a href="talk_list.jsp">评论列表</a>
+						</li>
+						<li>
+							<a href="talk_search.jsp">搜索评论</a>
+						</li>
+						<li>
+							<a href="talk_insert.jsp">添加评论</a>
+						</li>
+					</ul>
+				</div>
+			</li>
+		</ul>
+	</li>
+	<li class="bold">
+		<a href="file_upload.jsp" class="waves-effect waves-teal">上传文件</a>
+	</li>
+</ul>
+</header>

@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+      android:background="#EEEEE0" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="#8cc4fc"
+        android:layout_weight="2" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/regist1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dip"
+        android:layout_marginRight="10dip"
+        android:layout_weight="1" >
+
+      
+ 
+  
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  昵称"
+                android:textColor="#000"
+                android:textSize="19sp" />
+
+            <EditText
+                android:id="@+id/ed_regist_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/edtext"
+                android:padding="3dip"
+                android:hint="请输入昵称"
+                android:layout_marginLeft="40dip" >
+
+                <requestFocus />
+            </EditText>
+
+      </LinearLayout>
+      
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" >
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  密码"
+                    android:textColor="#000"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/ed_regist_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edtext"
+                    android:padding="3dip"
+                    android:inputType="textPassword"
+                    android:hint="请输入密码"
+                     android:layout_marginLeft="40dip" /> 
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip" >
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="  确认密码"
+                    android:textColor="#000"
+                    android:textSize="19sp" />
+
+                <EditText
+                    android:id="@+id/ed_regist_surepassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/edtext"
+                    android:padding="3dip"
+                    android:inputType="textPassword"
+                    android:hint="请确认密码"
+                     android:layout_marginLeft="3dip" />  
+
+            </LinearLayout>
+ <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip" 
+       >
+
+     <TextView
+         android:id="@+id/textView4"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="  性别"
+         android:textColor="#000"
+         android:textSize="19sp" />
+
+     <RadioButton
+         android:id="@+id/rb_regist_man"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="男"
+         android:textSize="19sp"
+         android:textColor="#000"
+         android:layout_marginLeft="40dip"
+          />
+
+     <RadioButton
+         android:id="@+id/rb_regist_woman"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="女"
+         android:textSize="19sp"
+         android:textColor="#000"
+         android:layout_marginLeft="10dip"
+         />
+
+    
+   
+            
+      
+ </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dip" >
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  生日"
+            android:textSize="19sp"
+            android:textColor="#000"
+             />
+
+        <EditText
+            android:id="@+id/ed_regist_year"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edtext"
+            android:padding="3dip"
+         
+            android:layout_marginLeft="40dip" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="年"
+             android:textSize="19sp"
+            android:textColor="#000"
+         
+             android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/ed_regist_month"
+            android:layout_width="17dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/edtext"
+            android:padding="3dip"
+            android:textSize="17sp"
+            android:textColor="#000"
+        />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="月"
+            android:textSize="19sp"
+            android:textColor="#000"
+        
+             android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/ed_regist_day"
+            android:layout_width="17dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dip"
+            android:background="@drawable/edtext"
+          />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="日"
+            android:textSize="19sp"
+            android:textColor="#000"
+         
+             android:gravity="center_horizontal"  />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dip" >
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="  所在地" 
+            android:textSize="19sp"
+            android:textColor="#000"
+           />
+
+        <EditText
+            android:id="@+id/ed_regist_province"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="3dip"
+            android:background="@drawable/edtext"
+            android:layout_marginLeft="20dip"
+             />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="省"
+             android:textSize="19sp"
+            android:textColor="#000"
+             android:gravity="center_horizontal" />
+
+        <EditText
+            android:id="@+id/ed_regist_city"
+            android:layout_width="70dip"
+            android:layout_height="wrap_content"
+            android:padding="3dip"
+            android:background="@drawable/edtext"
+             android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/textView11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="市"
+             android:textSize="19sp"
+            android:textColor="#000"
+              android:gravity="center_horizontal" />
+
+    </LinearLayout>
+     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout9"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|center_vertical"
+        android:layout_weight="2" >
+
+        <Button
+            android:id="@+id/bt_sure_regist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="确认注册"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColor="#000"
+            android:background="#8cc4fc"
+            android:textSize="22sp"/>
+
+    </LinearLayout>
+   
+</LinearLayout>

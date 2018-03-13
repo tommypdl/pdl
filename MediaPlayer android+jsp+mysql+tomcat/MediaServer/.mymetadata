@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="MediaServer"
+  id="myeclipse.1461635777292"
+  context-root="/MediaServer"
+  j2ee-spec="5.0"
+  archive="MediaServer.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

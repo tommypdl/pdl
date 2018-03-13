@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<title>后台管理系统</title>
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+		<link rel="stylesheet" href="css/app.min.css">
+	</head>
+
+	<body>
+		<div class="app-page" data-page="home">
+			<div class="app-topbar teal">
+				<div class="app-title">
+					后台管理系统 - 主页
+				</div>
+			</div>
+			<div class="app-content">
+				<div class="app-section">
+					<div class="app-button blue" onclick="location.href='user_list_mobile.jsp'">
+						用户管理
+					</div>
+					<div class="app-button blue" data-target="talk_manage">
+						评论管理
+					</div>
+					<div class="app-button blue" onclick="location.href='file_upload_mobile.jsp'">
+						上传文件
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="app-page" data-page="talk_manage">
+			<div class="app-topbar teal">
+				<div class="app-button left" data-back data-autotitle>
+					主页
+				</div>
+				<div class="app-title">
+					评论管理
+				</div>
+			</div>
+			<div class="app-content">
+				<div class="app-section">
+					<div class="app-button blue" onclick="location.href='talk_list_mobile.jsp';">
+						评论列表
+					</div>
+					<div class="app-button blue" onclick="location.href='talk_search_mobile.jsp';">
+						搜索评论
+					</div>
+					<div class="app-button blue" onclick="location.href='talk_insert_mobile.jsp';">
+						添加评论
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="js/zepto.js"></script>
+		<script src="js/app.min.js"></script>
+		<script>
+	App.load("home");
+</script>
+	</body>
+</html>
